@@ -1,3 +1,26 @@
+---
+license: apache-2.0
+language:
+- kn
+- en
+base_model: Qwen/Qwen3-0.6B
+tags:
+- kannada
+- qwen3
+- lora
+- peft
+- instruction-tuned
+- indian-languages
+- text-generation
+library_name: peft
+pipeline_tag: text-generation
+datasets:
+- Cognitive-Lab/Kannada-Instruct-dataset
+model-index:
+- name: KannadaGPT-0.6B
+  results: []
+---
+
 # KannadaGPT-0.6B
 
 A Kannada language model fine-tuned on Qwen3-0.6B using LoRA (Low-Rank Adaptation).
@@ -47,10 +70,10 @@ base_model = AutoModelForCausalLM.from_pretrained(
     torch_dtype="auto",
     device_map="auto"
 )
-tokenizer = AutoTokenizer.from_pretrained("mithungowdab/KannadaGPT-0.6B")
+tokenizer = AutoTokenizer.from_pretrained("Mithun501/KannadaGPT-0.6B")
 
 # Load LoRA adapter
-model = PeftModel.from_pretrained(base_model, "mithungowdab/KannadaGPT-0.6B")
+model = PeftModel.from_pretrained(base_model, "Mithun501/KannadaGPT-0.6B")
 
 # Generate text
 messages = [
@@ -82,7 +105,7 @@ print(response)
 
 ## Training Progress
 
-The model was trained on Kaggle with P100 GPU. Training metrics from checkpoint-1500:
+The model was trained on Kaggle with P100 GPU. Training metrics from checkpoint-4500:
 
 | Step | Loss | Learning Rate |
 |------|------|---------------|
@@ -90,59 +113,26 @@ The model was trained on Kaggle with P100 GPU. Training metrics from checkpoint-
 | 500 | 0.675 | 6.8e-05 |
 | 1000 | 0.613 | 1.4e-04 |
 | 1500 | 0.572 | 2.0e-04 |
+| 2000 | 0.534 | 2.0e-04 |
+| 2500 | 0.518 | 2.0e-04 |
+| 3000 | 0.502 | 1.9e-04 |
+| 3500 | 0.492 | 1.9e-04 |
+| 4000 | 0.488 | 1.9e-04 |
+| 4500 | 0.470 | 1.9e-04 |
 
-## Project Structure
-
-```
-KannadaGPT-0.6B/
-├── adapter_config.json      # LoRA configuration
-├── adapter_model.safetensors # LoRA weights (38MB)
-├── tokenizer.json           # Tokenizer
-├── tokenizer_config.json    # Tokenizer config
-├── vocab.json               # Vocabulary
-├── merges.txt               # BPE merges
-├── special_tokens_map.json  # Special tokens
-├── added_tokens.json        # Added tokens
-├── chat_template.jinja      # Chat template
-└── README.md                # This file
-```
+**Training Progress**: 4,500 / 48,702 steps (9.2% complete, epoch 0.185/2.0)
 
 ## Limitations
 
 - This is a LoRA adapter and requires the base model (Qwen3-0.6B) to run
-- Training is partial (checkpoint-1500 of ~48,700 total steps)
+- Training is partial (checkpoint-4500 of ~48,700 total steps, ~9.2% complete)
 - Best suited for Kannada instruction-following tasks
 - May generate incorrect or nonsensical responses for complex queries
-
-## Future Work
-
-- [ ] Complete full 2-epoch training
-- [ ] Merge LoRA weights into base model for easier loading
-- [ ] Evaluate on Kannada benchmarks
-- [ ] Fine-tune larger models (1.8B, 7B)
 
 ## License
 
 Apache 2.0
 
-## Citation
-
-```bibtex
-@misc{kannadagpt-0.6b,
-  author = {mithungowdab},
-  title = {KannadaGPT-0.6B: A Kannada Language Model},
-  year = {2025},
-  publisher = {GitHub},
-  url = {https://github.com/mithun50/KannadaGPT-0.6B}
-}
-```
-
-## Acknowledgments
-
-- [Qwen Team](https://huggingface.co/Qwen) for the base model
-- [Cognitive-Lab](https://huggingface.co/Cognitive-Lab) for the Kannada instruction dataset
-- [Hugging Face](https://huggingface.co) for the PEFT library
-
 ## Author
 
-**mithungowdab** - [GitHub](https://github.com/mithun50) | [HuggingFace](https://huggingface.co/mithungowdab)
+[mithungowdab](https://huggingface.co/Mithun501) | [GitHub](https://github.com/mithun50)
