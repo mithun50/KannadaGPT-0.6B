@@ -1,0 +1,59 @@
+name: Sync to HuggingFace Hub
+
+on:
+  push:
+    branches:
+      - master
+      - main
+  workflow_dispatch:  # Allow manual trigger
+
+jobs:
+  sync-to-hub:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          lfs: true
+
+      - name: Push to HuggingFace Hub
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+        run: |
+          git config --global user.email "mithungowdab@users.noreply.github.com"
+          git config --global user.name "mithun50"
+
+          # Install git-lfs
+          git lfs install
+
+          # Track large files with LFS
+          git lfs track "*.safetensors"
+          git lfs track "*.bin"
+          git lfs track "*.pt"
+          git lfs track "*.pth"
+          git lfs track "tokenizer.json"
+
+          # Add .gitattributes if changed
+          git add .gitattributes 2>/dev/null || true
+
+          # Clone HuggingFace repo
+          git clone https://user:$HF_TOKEN@huggingface.co/Mithun501/KannadaGPT-0.6B hf_repo
+
+          # Copy files to HF repo
+          cp -r adapter_config.json adapter_model.safetensors hf_repo/ 2>/dev/null || true
+          cp -r tokenizer*.json vocab.json merges.txt hf_repo/ 2>/dev/null || true
+          cp -r special_tokens_map.json added_tokens.json hf_repo/ 2>/dev/null || true
+          cp -r chat_template.jinja README.md LICENSE hf_repo/ 2>/dev/null || true
+          cp -r .gitattributes hf_repo/ 2>/dev/null || true
+
+          # Push to HuggingFace
+          cd hf_repo
+          git lfs install
+          git add -A
+          git diff --staged --quiet || git commit -m "Sync from GitHub: $(date +'%Y-%m-%d %H:%M:%S')"
+          git push https://user:$HF_TOKEN@huggingface.co/Mithun501/KannadaGPT-0.6B main || git push https://user:$HF_TOKEN@huggingface.co/Mithun501/KannadaGPT-0.6B master:main
+
+      - name: Sync completed
+        run: |
+          echo "✅ Successfully synced to https://huggingface.co/Mithun501/KannadaGPT-0.6B"
