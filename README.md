@@ -2,7 +2,7 @@
 
 A Kannada language model fine-tuned on Qwen3-0.6B using LoRA (Low-Rank Adaptation).
 
-[![HuggingFace](https://img.shields.io/badge/HuggingFace-Model-yellow)](https://huggingface.co/mithungowdab/KannadaGPT-0.6B)
+[![HuggingFace](https://img.shields.io/badge/HuggingFace-Model-yellow)](https://huggingface.co/Mithun501/KannadaGPT-0.6B)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 
 ## Model Details
