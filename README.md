@@ -4,6 +4,8 @@ language:
 - kn
 - en
 base_model: Qwen/Qwen3-0.6B
+library_name: peft
+pipeline_tag: text-generation
 tags:
 - kannada
 - qwen3
@@ -11,14 +13,8 @@ tags:
 - peft
 - instruction-tuned
 - indian-languages
-- text-generation
-library_name: peft
-pipeline_tag: text-generation
 datasets:
 - Cognitive-Lab/Kannada-Instruct-dataset
-model-index:
-- name: KannadaGPT-0.6B
-  results: []
 ---
 
 # KannadaGPT-0.6B
@@ -121,6 +117,25 @@ The model was trained on Kaggle with P100 GPU. Training metrics from checkpoint-
 | 4500 | 0.470 | 1.9e-04 |
 
 **Training Progress**: 4,500 / 48,702 steps (9.2% complete, epoch 0.185/2.0)
+<<<<<<< HEAD
+=======
+
+## Project Structure
+
+```
+KannadaGPT-0.6B/
+├── adapter_config.json      # LoRA configuration
+├── adapter_model.safetensors # LoRA weights (38MB)
+├── tokenizer.json           # Tokenizer
+├── tokenizer_config.json    # Tokenizer config
+├── vocab.json               # Vocabulary
+├── merges.txt               # BPE merges
+├── special_tokens_map.json  # Special tokens
+├── added_tokens.json        # Added tokens
+├── chat_template.jinja      # Chat template
+└── README.md                # This file
+```
+>>>>>>> b9fa282 (Update to checkpoint-4500 with improved training metrics)
 
 ## Limitations
 
@@ -129,10 +144,35 @@ The model was trained on Kaggle with P100 GPU. Training metrics from checkpoint-
 - Best suited for Kannada instruction-following tasks
 - May generate incorrect or nonsensical responses for complex queries
 
+## Future Work
+
+- [ ] Complete full 2-epoch training
+- [ ] Merge LoRA weights into base model for easier loading
+- [ ] Evaluate on Kannada benchmarks
+- [ ] Fine-tune larger models (1.8B, 7B)
+
 ## License
 
 Apache 2.0
 
+## Citation
+
+```bibtex
+@misc{kannadagpt-0.6b,
+  author = {Mithun501},
+  title = {KannadaGPT-0.6B: A Kannada Language Model},
+  year = {2025},
+  publisher = {GitHub},
+  url = {https://github.com/mithun50/KannadaGPT-0.6B}
+}
+```
+
+## Acknowledgments
+
+- [Qwen Team](https://huggingface.co/Qwen) for the base model
+- [Cognitive-Lab](https://huggingface.co/Cognitive-Lab) for the Kannada instruction dataset
+- [Hugging Face](https://huggingface.co) for the PEFT library
+
 ## Author
 
-[mithungowdab](https://huggingface.co/Mithun501) | [GitHub](https://github.com/mithun50)
+**Mithun501** - [GitHub](https://github.com/mithun50) | [HuggingFace](https://huggingface.co/Mithun501)
