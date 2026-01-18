@@ -23,6 +23,7 @@ A Kannada language model fine-tuned on Qwen3-0.6B using LoRA (Low-Rank Adaptatio
 
 [![HuggingFace](https://img.shields.io/badge/HuggingFace-Model-yellow)](https://huggingface.co/Mithun501/KannadaGPT-0.6B)
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/mithun50/KannadaGPT-0.6B/blob/master/KannadaGPT_Inference.ipynb)
+[![Merge Model](https://img.shields.io/badge/Colab-Merge_Model-orange)](https://colab.research.google.com/github/mithun50/KannadaGPT-0.6B/blob/master/KannadaGPT_Merge.ipynb)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 
 ## Model Details
@@ -127,17 +128,18 @@ The model was trained on Kaggle with P100 GPU. Training metrics from checkpoint-
 
 ```
 KannadaGPT-0.6B/
-├── adapter_config.json      # LoRA configuration
-├── adapter_model.safetensors # LoRA weights (38MB)
-├── tokenizer.json           # Tokenizer
-├── tokenizer_config.json    # Tokenizer config
-├── vocab.json               # Vocabulary
-├── merges.txt               # BPE merges
-├── special_tokens_map.json  # Special tokens
-├── added_tokens.json        # Added tokens
-├── chat_template.jinja      # Chat template
-├── KannadaGPT_Inference.ipynb # Colab notebook
-└── README.md                # This file
+├── adapter_config.json        # LoRA configuration
+├── adapter_model.safetensors  # LoRA weights (38MB)
+├── tokenizer.json             # Tokenizer
+├── tokenizer_config.json      # Tokenizer config
+├── vocab.json                 # Vocabulary
+├── merges.txt                 # BPE merges
+├── special_tokens_map.json    # Special tokens
+├── added_tokens.json          # Added tokens
+├── chat_template.jinja        # Chat template
+├── KannadaGPT_Inference.ipynb # Colab inference notebook
+├── KannadaGPT_Merge.ipynb     # Colab merge notebook
+└── README.md                  # This file
 ```
 
 ## Limitations
