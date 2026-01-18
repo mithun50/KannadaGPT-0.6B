@@ -22,6 +22,7 @@ datasets:
 A Kannada language model fine-tuned on Qwen3-0.6B using LoRA (Low-Rank Adaptation).
 
 [![HuggingFace](https://img.shields.io/badge/HuggingFace-Model-yellow)](https://huggingface.co/Mithun501/KannadaGPT-0.6B)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/mithun50/KannadaGPT-0.6B/blob/master/KannadaGPT_Inference.ipynb)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 
 ## Model Details
@@ -47,6 +48,10 @@ A Kannada language model fine-tuned on Qwen3-0.6B using LoRA (Low-Rank Adaptatio
 | Learning Rate | 2e-4 |
 | Batch Size | 2 (with gradient accumulation 8) |
 | Epochs | 2 |
+
+## Quick Start
+
+**Try it in Google Colab:** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/mithun50/KannadaGPT-0.6B/blob/master/KannadaGPT_Inference.ipynb)
 
 ## Installation
 
@@ -117,8 +122,6 @@ The model was trained on Kaggle with P100 GPU. Training metrics from checkpoint-
 | 4500 | 0.470 | 1.9e-04 |
 
 **Training Progress**: 4,500 / 48,702 steps (9.2% complete, epoch 0.185/2.0)
-<<<<<<< HEAD
-=======
 
 ## Project Structure
 
@@ -133,9 +136,9 @@ KannadaGPT-0.6B/
 ├── special_tokens_map.json  # Special tokens
 ├── added_tokens.json        # Added tokens
 ├── chat_template.jinja      # Chat template
+├── KannadaGPT_Inference.ipynb # Colab notebook
 └── README.md                # This file
 ```
->>>>>>> b9fa282 (Update to checkpoint-4500 with improved training metrics)
 
 ## Limitations
 
